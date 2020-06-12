@@ -2,7 +2,8 @@ set (APP TestExec)
 
 set (TestLIB UnitTest++)
 
-set (SomethingLB Something)
+set (SomethingLIB Something)
+set(AppleLIB Apple)
 
 ##############################################################
 ## unitTest++
@@ -37,7 +38,7 @@ file(GLOB ${APP}_SOURCES_TEST RELATIVE ${CMAKE_SOURCE_DIR}/src/Tests/${APP} ../T
 file(GLOB ${APP}_HEADERS_TEST RELATIVE ${CMAKE_SOURCE_DIR}/src/Tests/${APP} ../Tests/*.h)
 source_group (Tests FILES ${APP}_SOURCES_TEST ${APP}_HEADERS_TEST)
 
-## add include directories
+# add include directories
 foreach(PATH ${PROJECT_INCLUDES})
     include_directories(${PATH})
 endforeach(PATH)
@@ -46,7 +47,7 @@ if (WITH_TESTS)
     add_executable(${APP} ${${APP}_SOURCES} ${${APP}_HEADERS} ${${APP}_SOURCES_TEST} ${${APP}_HEADERS_TEST})
 
     # link the libraries
-    target_link_libraries(${APP} ${LIB} ${TestLIB} ${SomethingLIB} ${OS_LIBS})
+    target_link_libraries(${APP} ${LIB} ${TestLIB} ${SomethingLIB} ${AppleLIB})
 endif (WITH_TESTS)
 
 
